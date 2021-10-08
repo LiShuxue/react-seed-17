@@ -1,9 +1,11 @@
+import React, { Suspense } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import './App.scss';
-import Page1 from './pages/page1';
-import Page2 from './pages/page2';
-import Page3 from './pages/page3';
 import Header from './components/Header';
+
+const Page1 = React.lazy(() => import(/* webpackChunkName: 'page1' */ './pages/page1'));
+const Page2 = React.lazy(() => import(/* webpackChunkName: 'page2' */ './pages/page2'));
+const Page3 = React.lazy(() => import(/* webpackChunkName: 'page3' */ './pages/page3'));
 
 const App = () => {
   return (
@@ -11,16 +13,18 @@ const App = () => {
       <BrowserRouter>
         <Header />
         <Switch>
-          <Route exact path="/page1">
-            <Page1 />
-          </Route>
-          <Route exact path="/page2">
-            <Page2 />
-          </Route>
-          <Route exact path="/page3">
-            <Page3 />
-          </Route>
-          <Redirect to="/page1" />
+          <Suspense fallback={<div>loading...</div>}>
+            <Route exact path="/page1">
+              <Page1 />
+            </Route>
+            <Route exact path="/page2">
+              <Page2 />
+            </Route>
+            <Route exact path="/page3">
+              <Page3 />
+            </Route>
+            <Redirect to="/page1" />
+          </Suspense>
         </Switch>
       </BrowserRouter>
     </div>

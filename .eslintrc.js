@@ -3,6 +3,6 @@ module.exports = {
   extends: ['react-app', 'plugin:prettier/recommended'],
   rules: {
     'prettier/prettier': 'error',
-    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
   },
 };
