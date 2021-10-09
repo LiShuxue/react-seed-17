@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.3.0",
+    "axios": "^0.22.0",
     "classnames": "^2.3.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
@@ -12,12 +13,24 @@
     "prettier": "^2.4.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-redux": "^7.2.5",
     "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
+    "redux": "^4.1.1",
+    "redux-thunk": "^2.3.0",
     "sass": "^1.42.1"
   },
+  "devDependencies": {
+    "koa": "^2.13.3",
+    "koa-bodyparser": "^4.3.0",
+    "koa-router": "^10.1.1",
+    "koa-static": "^5.0.0",
+    "koa2-cors": "^2.0.6",
+    "nodemon": "^2.0.13"
+  },
   "scripts": {
-    "start": "craco start",
+    "mock": "nodemon --delay 2 --watch server server/server.js",
+    "start": "concurrently \"yarn mock\" \"craco start\"",
     "build": "craco build",
     "lint": "eslint --ext .js --ext .jsx .",
     "lint-fix": "eslint --fix --ext .js --ext .jsx ."
