@@ -1,12 +1,11 @@
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import reducer from './reducers';
+import { configureStore } from '@reduxjs/toolkit';
+import testSlice from './testSlice';
 
-const defaultState = {
-  stateA: '这是A state',
-  stateB: '这是B state',
-};
-
-const store = createStore(reducer, defaultState, applyMiddleware(thunk));
+const store = configureStore({
+  reducer: {
+    // state分模块
+    test: testSlice,
+  },
+});
 
 export default store;

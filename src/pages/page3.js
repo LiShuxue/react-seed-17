@@ -1,23 +1,19 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { testSyncAction, testAsyncAction } from '../store/actions';
+import { syncAction, asyncAction } from '../store/testSlice';
 import { testGetMethod, testPostMethod } from '../ajax/api';
 
 const Page3 = () => {
-  const stateA = useSelector((state) => state.stateA);
-  const stateB = useSelector((state) => state.stateB);
+  const stateA = useSelector((state) => state.test.stateA);
+  const stateB = useSelector((state) => state.test.stateB);
 
   const dispatch = useDispatch();
 
   const changeA = () => {
-    if (stateA === '改变A') {
-      dispatch(testSyncAction('这是A state'));
-    } else {
-      dispatch(testSyncAction('改变A'));
-    }
+    dispatch(syncAction('改变A'));
   };
 
   const changeB = () => {
-    dispatch(testAsyncAction());
+    dispatch(asyncAction());
   };
 
   const testGet = () => {
